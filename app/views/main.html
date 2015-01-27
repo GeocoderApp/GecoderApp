@@ -1,0 +1,125 @@
+  
+
+    <div class="container-fluid">
+    <div class="row">
+
+    <div class='col-md-5'>
+
+        <h1>GeocoderApp</h1>
+        <div class="well">
+          <form ng-submit="codeAddress(address)">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for address..." ng-model="address">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Find</button>
+                </span>
+            </div><!-- /input-group -->
+          </form>
+        </div>
+
+        <div class="well">
+
+          <!--<img ng-src="{{google_image}}" class="img-circle pull-left"/> -->
+          <h4>{{formatted_address}}</h4>
+        </div>
+
+
+        <div class="row"> 
+          <div class="col-md-12">
+          <div class="panel">
+          <tabset justified="true">
+
+            <tab heading="Location">
+              <div class="row">
+                <div class="col-md-6" ng:repeat="panel in panelsLocation">
+                    <div class="panel panel-result">
+                      <div class="panel-body">
+                        <div class="huge text-right">{{panel.Value}}</div>
+                        <span class="unit-result pull-right">{{panel.Unit}}</span>
+                      </div>
+                      <div class="panel-footer">
+                              <span class="pull-left">{{panel.Prop}}</span>
+                              <span class="pull-right glyphicon {{panel.Icon}}" aria-hidden="true"></span>
+                              <div class="clearfix"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Elevation">
+              <div class="row">
+                <div class="col-md-6" ng:repeat="panel in panelsElevation">
+                  <div class="panel panel-result">
+                    <div class="panel-body">
+                      <div class="huge text-right">{{panel.Value}}</div>
+                      <span class="unit-result pull-right">{{panel.Unit}}</span>
+                    </div>
+                    <div class="panel-footer">
+                            <span class="pull-left">{{panel.Prop}}</span>
+                            <span class="pull-right glyphicon {{panel.Icon}}" aria-hidden="true"></span>
+                            <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Address">
+              <div class="row">
+                <div class="col-md-6" ng:repeat="component in address_components">
+                    <div class="panel panel-result">
+                      <div class="panel-body">
+                        <div class="huge text-right">{{component.long_name}}</div>
+                        <span class="unit-result pull-right"></span>
+                      </div>
+                      <div class="panel-footer">
+                              <span class="pull-left">{{component.types[0]}}</span>
+                              <span class="pull-right glyphicon glyphicon-tags" aria-hidden="true"></span>
+                              <div class="clearfix"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Time Zone">
+              <div class="row">
+                <div class="col-md-6" ng:repeat="panel in panelsTimeZone">
+                  <div class="panel panel-result">
+                    <div class="panel-body">
+                      <div class="huge text-right">{{panel.Value}}</div>
+                      <span class="unit-result pull-right">{{panel.Unit}}</span>
+                    </div>
+                    <div class="panel-footer">
+                            <span class="pull-left">{{panel.Prop}}</span>
+                            <span class="pull-right glyphicon {{panel.Icon}}" aria-hidden="true"></span>
+                            <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+
+          </tabset>
+          </div> <!-- panel -->
+         </div> <!--col md 12--> 
+        </div> <!-- row -->
+
+    </div> <!-- col-md-4 -->
+
+    <div class='col-md-7' style="padding-right:0"> 
+
+          <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control" resize>
+                    <ui-gmap-marker coords="map.marker" idKey="map.marker.idk">
+                    </ui-gmap-marker>
+          </ui-gmap-google-map>
+
+     </div>
+
+
+
+    </div>
+  </div>
+
