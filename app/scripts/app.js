@@ -21,11 +21,12 @@ angular.module('geocoderApp',
   ])
 
 
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
+        reloadOnSearch: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -34,6 +35,9 @@ angular.module('geocoderApp',
       .otherwise({
         redirectTo: '/'
       });
+
+      // use the HTML5 History API
+      $locationProvider.html5Mode(true);
   });
 
 

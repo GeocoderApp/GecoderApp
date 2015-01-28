@@ -3,7 +3,7 @@
     <div class="container-fluid">
     <div class="row">
 
-    <div class='col-md-5'>
+    <div id="datacol" class='col-md-5'>
 
         <h1>GeocoderApp</h1>
         <div class="well">
@@ -17,10 +17,12 @@
           </form>
         </div>
 
-        <div class="well">
+        <div id="formated_result" class="well">
 
           <!--<img ng-src="{{google_image}}" class="img-circle pull-left"/> -->
-          <h4>{{formatted_address}}</h4>
+          <h4> {{formatted_address}}</h4>
+          <a href="{{short_url}}">{{short_url}}</a>
+
         </div>
 
 
@@ -74,7 +76,7 @@
                         <span class="unit-result pull-right"></span>
                       </div>
                       <div class="panel-footer">
-                              <span class="pull-left">{{component.types[0]}}</span>
+                              <span class="pull-left">{{component.types[0] | remove_underscore | CapitalizeFirst}}</span>
                               <span class="pull-right glyphicon glyphicon-tags" aria-hidden="true"></span>
                               <div class="clearfix"></div>
                       </div>
@@ -109,7 +111,7 @@
 
     </div> <!-- col-md-4 -->
 
-    <div class='col-md-7' style="padding-right:0"> 
+    <div class='col-md-7' style="padding-right:0;position:relative;"> 
 
           <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="map.options" control="map.control" resize>
                     <ui-gmap-marker coords="map.marker" idKey="map.marker.idk">

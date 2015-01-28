@@ -1,32 +1,59 @@
 
+/*
+1vw = 1% of viewport width
+
+1vh = 1% of viewport height
+
+1vmin = 1vw or 1vh, whichever is smaller
+
+1vmax = 1vw or 1vh, whichever is larger
+*/
+
+h1 {
+  font-size: 3vw;
+}
+
+#formated_result h4 {
+  font-size: 2.2vh;
+}
+
+#formated_result a {
+  font-size: 2vh;
+}
+
 .angular-google-map-container {
   min-height: 400px;
   box-shadow:0 3px 25px black;
 }
 
+#datacol {
+  overflow: auto;
+}
 
 
 /* Custom Colored Panels*/
 
 .huge {
-    font-size: 24px;
+    font-size: 3.0vh;
     color:#fff;
 
 }
 
 .unit-result {
     color:#fff;
+    font-size: 1.7vmin;
+
 }
 
 .panel-result {
     background-color:#434A54;
-    margin-top:40px;
+    margin-top:18px;
 
 }
 
 .panel-footer {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2vmin;
 }
 
 .tab-result {

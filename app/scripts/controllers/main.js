@@ -26,8 +26,26 @@ angular.module('geocoderApp')
         };
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
 
-            // resize map container to new height
-            $('.angular-google-map-container').height(newValue.h - 0);
+            if( ($('#datacol').prop('offsetHeight') - newValue.h) >= 0 ) {
+
+            		$('#datacol').css({overflow:"auto"});
+            } else {
+					$('#datacol').css({overflow:"hidden"});
+            }
+
+
+            if(newValue.w < 992) {
+
+            	$('#datacol').css({overflow:"hidden"});
+            	$('#datacol').css({height: "auto"});
+            	$('.angular-google-map-container').height(400);
+
+            } else {
+
+	    	     // resize map container to new height
+	            $('.angular-google-map-container').height(newValue.h - 0);
+	            $('#datacol').height(newValue.h - 0);
+            }
 
         }, true);
 
@@ -37,7 +55,7 @@ angular.module('geocoderApp')
     }
 })
 
-.controller("MainCtrl", function($scope, $http, uiGmapGoogleMapApi) {
+.controller("MainCtrl", function($scope, $routeParams, $location, $http, uiGmapGoogleMapApi) {
     // Do stuff with your $scope.
     // Note: Some of the directives require at least something to be defined originally!
     // e.g. $scope.markers = []
@@ -184,14 +202,14 @@ angular.module('geocoderApp')
 
 						}, {
 
-							Prop: "timeZoneName",
+							Prop: "Time Zone",
 							Icon: "glyphicon-globe",
 							Unit: "",
 							Value: response.timeZoneName
 
 						}, {
 
-							Prop: "timeZoneId",
+							Prop: "Time Zone Id",
 							Icon: "glyphicon-globe",
 							Unit: "",
 							Value: response.timeZoneId
@@ -210,6 +228,17 @@ angular.module('geocoderApp')
 				//$scope.google_image = "https://maps.googleapis.com/maps/api/streetview?size=120x120&location=" + lat + "," + lng + "&fov=60&key=AIzaSyB7YXoHGTXoXMqZfXojJKU_8trH8Go_gH4"
 				// });
 
+				$location.search('address', encodeURI($scope.formatted_address));
+
+				var this_long_url = {"longUrl": $location.absUrl()};
+
+				$http.post("https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB7YXoHGTXoXMqZfXojJKU_8trH8Go_gH4",
+				this_long_url
+				).success(function(response) {
+						$scope.short_url = response.id;
+				});
+
+				
 
 		      } else {
 		        alert('Geocode was not successful for the following reason: ' + status);
@@ -217,12 +246,28 @@ angular.module('geocoderApp')
 		    });
 		    return;
 
-
 	  }; //end geocde
 
 //Run
-$scope.address = "Blackheath Avenue, London SE10 8XJ, United Kingdom";
-$scope.codeAddress($scope.address);
+var current_address = "";//($location.search()).address;
+if (!($location.search()).address  === undefined) {
+	 current_address = ($location.search()).address;
+}
+
+if(current_address.length > 0) {
+
+	$scope.address =  decodeURI(current_address);
+	$scope.codeAddress($scope.address);
+
+} else {
+
+	$scope.address = "Blackheath Avenue, London SE10 8XJ, United Kingdom";
+	$scope.codeAddress($scope.address);
+
+}
+
+
+
 
 		// formats a number as a latitude (e.g. 40.46... => "40°27'44"N")
 		function convLATtoDMS(input) {
@@ -253,7 +298,21 @@ $scope.codeAddress($scope.address);
     });
 
 
+})
+
+.filter('remove_underscore', function() {
+  return function(input) {
+    return input = input.replace(/_/g, " ");;
+  };
+})
+
+.filter('CapitalizeFirst', function() {
+  return function(input) {
+    return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  };
 });
+
+
 
 ;
 
