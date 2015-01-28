@@ -1,11 +1,8 @@
 
 /*
 1vw = 1% of viewport width
-
 1vh = 1% of viewport height
-
 1vmin = 1vw or 1vh, whichever is smaller
-
 1vmax = 1vw or 1vh, whichever is larger
 */
 
@@ -14,11 +11,11 @@ h1 {
 }
 
 #formated_result h4 {
-  font-size: 2.2vh;
+  font-size: 22px;
 }
 
 #formated_result a {
-  font-size: 2vh;
+  font-size: 18px;
 }
 
 .angular-google-map-container {

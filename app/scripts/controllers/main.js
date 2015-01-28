@@ -26,13 +26,6 @@ angular.module('geocoderApp')
         };
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
 
-            if( ($('#datacol').prop('offsetHeight') - newValue.h) >= 0 ) {
-
-            		$('#datacol').css({overflow:"auto"});
-            } else {
-					$('#datacol').css({overflow:"hidden"});
-            }
-
 
             if(newValue.w < 992) {
 
@@ -248,26 +241,6 @@ angular.module('geocoderApp')
 
 	  }; //end geocde
 
-//Run
-var current_address = "";//($location.search()).address;
-if (!($location.search()).address  === undefined) {
-	 current_address = ($location.search()).address;
-}
-
-if(current_address.length > 0) {
-
-	$scope.address =  decodeURI(current_address);
-	$scope.codeAddress($scope.address);
-
-} else {
-
-	$scope.address = "Blackheath Avenue, London SE10 8XJ, United Kingdom";
-	$scope.codeAddress($scope.address);
-
-}
-
-
-
 
 		// formats a number as a latitude (e.g. 40.46... => "40°27'44"N")
 		function convLATtoDMS(input) {
@@ -295,7 +268,29 @@ if(current_address.length > 0) {
 		};
 
 
+
+		//Run------------------------------------------
+		var current_address = "";//($location.search()).address;
+		if ( ($location.search()).address  != undefined) {
+			 current_address = ($location.search()).address;
+		}
+
+		if(current_address.length > 0) {
+			$scope.address =  decodeURI(current_address);
+			$scope.codeAddress($scope.address);
+
+		} else {
+			
+
+			$scope.address = "Blackheath Avenue, London SE10 8XJ, United Kingdom";
+			$scope.codeAddress($scope.address);
+
+		}
+		//---------------------------------------------
+
+
     });
+
 
 
 })
