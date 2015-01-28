@@ -94,8 +94,24 @@ angular.module('geocoderApp')
 		        $scope.formatted_address = results[0].formatted_address;
         		$scope.address_components = results[0].address_components;
 
-		        $scope.map.control.getGMap().setCenter(results[0].geometry.location);
-		        $scope.map.control.getGMap().fitBounds(results[0].geometry.viewport);
+
+
+	        	//$scope.map.control.getGMap().fitBounds(results[0].geometry.viewport);
+
+				var southwest = results[0].geometry.viewport.getSouthWest();
+				var northeast = results[0].geometry.viewport.getNorthEast();
+
+
+				$scope.map.bounds = {
+				  northeast: {
+				    latitude:  northeast.lat(),
+				    longitude:  northeast.lng()
+				  },
+				  southwest: {
+				    latitude: southwest.lat(),
+				    longitude: southwest.lng()
+				  }
+				}
 
 				$scope.map.marker.idk = 1;
 				//results[0].formatted_address; //something uniq

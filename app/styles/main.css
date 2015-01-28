@@ -19,7 +19,7 @@ h1 {
 }
 
 .angular-google-map-container {
-  min-height: 400px;
+  /*min-height: 400px;*/
   box-shadow:0 3px 25px black;
 }
 

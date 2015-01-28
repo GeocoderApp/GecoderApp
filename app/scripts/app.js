@@ -26,7 +26,7 @@ angular.module('geocoderApp',
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        //reloadOnSearch: false
+        reloadOnSearch: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',
