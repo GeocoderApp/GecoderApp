@@ -141,7 +141,7 @@ angular.module('geocoderApp')
 
 	        	  		 Prop: "Latitude",
 			        	 Icon: "glyphicon-globe",
-			        	 Unit: "Degree Minutes Seconds",
+			        	 Unit: "Degrees Minutes Seconds",
 			        	 Value: convLATtoDMS(lat)
 
 		        	  }, 
@@ -150,7 +150,7 @@ angular.module('geocoderApp')
 
 			        	 Prop: "Longitude",
 			        	 Icon: "glyphicon-globe",
-			        	 Unit: "Degree Minutes Seconds",
+			        	 Unit: "Degrees Minutes Seconds",
 			        	 Value: convLNGtoDMS(lng)
 
 		        	  }];
@@ -296,7 +296,6 @@ angular.module('geocoderApp')
 			$scope.codeAddress($scope.address);
 
 		} else {
-			
 
 			$scope.address = "Blackheath Avenue, London SE10 8XJ, United Kingdom";
 			$scope.codeAddress($scope.address);
