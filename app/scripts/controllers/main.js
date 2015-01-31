@@ -27,19 +27,6 @@ angular.module('geocoderApp')
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
 
 
-            if(newValue.w < 992) {
-
-            	$('#datacol').css({overflow:"hidden"});
-            	$('#datacol').css({height: "auto"});
-            	$('.angular-google-map-container').height(400);
-
-            } else {
-
-	    	     // resize map container to new height
-	            $('.angular-google-map-container').height(newValue.h - 0);
-	            $('#datacol').height(newValue.h - 0);
-            }
-
         }, true);
 
         w.bind('resize', function () {
