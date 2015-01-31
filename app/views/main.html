@@ -126,11 +126,11 @@
 
   <!-- Map heigth and other fixes on window resize -->
   <script>
-    $(function() {   
-          $(window).on('load resize', function () {
-
-              w = $(window).width();
-              h = $(window).height();
+  $(document).ready(function() {
+    
+        $(window).on('resize',function() {
+              var w = $(window).width();
+              var h = $(window).height();
               if(w < 992) {
 
                   $('#datacol').css({overflow:"hidden"});
@@ -144,7 +144,7 @@
                   $('#datacol').height(h - 0);
               }
 
+          }).trigger('resize');
 
-          });
       }); //document ready
   </script>  

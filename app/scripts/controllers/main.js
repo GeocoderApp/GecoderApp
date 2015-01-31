@@ -63,6 +63,28 @@ angular.module('geocoderApp')
 
     uiGmapGoogleMapApi.then(function(maps) {
 
+  		//Map heigth and other fixes on window resize and after the map is loaded
+
+	    $(window).on('resize',function() {
+
+	          var w = $(window).width();
+	          var h = $(window).height();
+	          if(w < 992) {
+
+	              $('#datacol').css({overflow:"hidden"});
+	              $('#datacol').css({height: "auto"});
+	              $('.angular-google-map-container').height(400);
+
+	          } else {
+
+	               // resize map container to new height
+	              $('.angular-google-map-container').height(h - 0);
+	              $('#datacol').height(h - 0);
+	          }
+
+	      }).trigger('resize');
+	    
+	    //------------------------
 
 
     	//geocode
